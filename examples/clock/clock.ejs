@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="clock">
+      <% for(var i=1; i<13; i++) { %>
+      <div class="x-<%= i %>"></div>
+      <% } %>
+      
+      <div class="pin"></div>
+      <!--  <span class="pos-<%= i %>"><%= i %></span>  -->
+    </div>
+  </body>
+</html>

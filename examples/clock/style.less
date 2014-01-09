@@ -1,0 +1,89 @@
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.hide {
+  display: none;
+}
+
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.rect (@width: 100px, @height: 100px) {
+  width: @width;
+  height: @height;
+}
+
+.square (@dim) {
+  .rect(@dim, @dim);
+}
+
+.circle (@dia) {
+  .square(@dia);
+  .rounded-corners(50%);
+}
+
+.rotate (@deg) {
+  transform: rotate(@deg);
+  -ms-transform: rotate(@deg);
+  -webkit-transform: rotate(@deg);
+}
+
+.clock-text(@toppos: 0, @leftpos: 0, @rotate: 0) {
+  font-size: 18pt;
+  font-weight: bold;
+  font-family: "Lucida Handwriting", times, sans;
+  top: @toppos;
+  left: @leftpos;
+  .rotate(@rotate);
+}
+
+div.clock {
+  position: relative;
+  border: 5px solid #333;
+  .circle(325px);
+
+  span {
+    position: absolute;
+  }
+}
+
+
+/* (~".x-@{index}") { */
+/* top: %(~"%spx", @index); */
+
+@from: 0;
+@to: 12;
+
+.angle (@theta) {
+  @angle: unit(round((@theta - 1) * 30), deg);
+}
+
+.loop (@index) when (@index > @from) {
+  .x-@{index} {
+    position: absolute;
+    top: unit( 162 + sin(@angle) * 150, px);
+    left: unit( 150 + cos(@angle) * 150, px);
+    width: 25px;
+    height: 0;
+    border: 1px solid #333;
+    .angle(@index);
+    .rotate(@angle);
+  }
+  .loop(@index - 1);
+}
+.loop (0) {}
+.loop(@to);
+
+
