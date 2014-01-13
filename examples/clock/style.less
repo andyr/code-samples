@@ -60,9 +60,7 @@ div.clock {
 }
 
 
-/* (~".x-@{index}") { */
-/* top: %(~"%spx", @index); */
-
+/* Draw clock ticks */
 @from: 0;
 @to: 12;
 
@@ -70,20 +68,64 @@ div.clock {
   @angle: unit(round((@theta - 1) * 30), deg);
 }
 
+.clock-tick (@top: 0, @left: 0, @rotate: 0) {
+  position: absolute;
+  top: @top;
+  left: @left;
+  .rotate(@rotate);
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+}
+
 .loop (@index) when (@index > @from) {
   .x-@{index} {
-    position: absolute;
-    top: unit( 162 + sin(@angle) * 150, px);
-    left: unit( 150 + cos(@angle) * 150, px);
-    width: 25px;
-    height: 0;
-    border: 1px solid #333;
     .angle(@index);
+    .clock-tick(
+        unit( 162 + sin(@angle) * 150, px), 
+        unit( 150 + cos(@angle) * 150, px), 
+        @angle
+    );
     .rotate(@angle);
   }
   .loop(@index - 1);
 }
 .loop (0) {}
 .loop(@to);
+
+
+.hand(@height: 250px) {
+  position: absolute;
+  top: 0px;
+  left: 500px;
+  width: 0;
+  height: 250px;
+  border: 1px solid #000;
+  height: @height;
+  .rounded-corners(5px);
+  transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+}
+
+.second-hand {
+  .hand(250px);
+  border: 1px solid #0f0;
+}
+
+.minute-hand {
+  .hand(200px);
+  border: 2px solid #f00;
+  left: 600px;
+}
+
+.hour-hand {
+  .hand(100px);
+  border: 3px solid #00f;
+  left: 700px; 
+}
+
+
+
 
 

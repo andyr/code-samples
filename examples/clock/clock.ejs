@@ -3,15 +3,21 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery.min.js'></script>
+    <script src='/javascripts/jquery.min.map'></script>
   </head>
   <body>
     <div class="clock">
+      
       <% for(var i=1; i<13; i++) { %>
       <div class="x-<%= i %>"></div>
       <% } %>
       
       <div class="pin"></div>
-      <!--  <span class="pos-<%= i %>"><%= i %></span>  -->
+      <div class="second-hand"></div>
+      <div class="minute-hand"></div>
+      <div class="hour-hand"></div>
     </div>
+    <script src='/javascripts/clock.js'></script>
   </body>
 </html>

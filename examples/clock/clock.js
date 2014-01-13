@@ -1,24 +1,25 @@
 
-exports.showClock = function(req, res){
-  var data = {
-    title: 'Clock'
+
+var sa=0, ma=0, ha=0,
+    s_el = $('.second-hand'),
+    m_el = $('.minute-hand'),
+    h_el = $('.hour-hand');
+var interval = 25;
+
+setInterval(function () { 
+  sa += 6/(1000/interval) % 360; // 6deg/s
+  ma += 6/(60 * 1000/interval) % 360; // 6deg/min
+  ha += 30/(3600 * 1000/interval) % 360; // 30deg/1hr
+  
+  function rotate(el, angle) {
+    el.css({ transform: 'rotate('+angle+'deg)' });
   };
-  res.render('clock', data);
-};
+
+  rotate(s_el, sa);
+  rotate(m_el, ma);
+  rotate(h_el, ha);
+
+}, interval);
 
 
-/*
-// loop for drawing segments around a clock - top, left, angle
-// i=0 corresponds to 12
-el = {}; // tick element
-angle = 0;
-for (i=0; i<12; i++) {
-  var h_offset = 150;
-  var top=0, left=0;
-  top = i + offset;
-  left = i + offset; //(start at 0,0)
 
-  top = top - (150 * sin(60))
-}
-
-*/
