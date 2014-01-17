@@ -97,7 +97,7 @@ div.clock {
 .hand(@height: 250px) {
   position: absolute;
   top: 0px;
-  left: 500px;
+  left: 162px;
   width: 0;
   height: 250px;
   border: 1px solid #000;
@@ -108,21 +108,23 @@ div.clock {
   -webkit-transform-origin: 0 100%;
 }
 
+/* Just eyeball the vertical offset of the origin of the hands for now */
 .second-hand {
   .hand(250px);
-  border: 1px solid #0f0;
+  top: -88px;
+  border: 1px solid #333;
 }
 
 .minute-hand {
   .hand(200px);
-  border: 2px solid #f00;
-  left: 600px;
+  border: 2px solid #333;
+  top: -38px;
 }
 
 .hour-hand {
   .hand(100px);
-  border: 3px solid #00f;
-  left: 700px; 
+  border: 3px solid #333;
+  top: 62px;
 }
 
 
