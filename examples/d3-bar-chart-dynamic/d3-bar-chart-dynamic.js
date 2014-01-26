@@ -2,20 +2,32 @@
 var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
                 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 
-/*
-d3.select('body').selectAll('div')
-  .data(dataset)
-  .enter()
-  .append('div')
-  .attr('class', 'bar')
-  .style('height', function (d) {
-    var barHeight = d * 5;
-    return barHeight + 'px';
-  })
-*/
-var w = 500, h = 200,
+
+// Generate a dynamic dataset
+var maxValue = 100;
+                
+function generateData(pts) {
+  pts = pts || 20;
+  var set = [];
+  for(var i=0; i<pts; i++) {
+    set.push( Math.round( Math.random() * maxValue ) );
+  }
+  return set;
+};
+
+var w = 600, h = 250,
   barPadding = 1,
   scaleHeight = 4;
+
+// For setting x position of each bar
+var xScale = d3.scale.ordinal()
+  .domain( d3.range(dataset.length) ) // ordinal usually for enumerated values (Sun-Sat)
+  .rangeRoundBands( [0, w], 0.05 );   // specifies width per bar and padding
+
+var yScale = d3.scale.linear()
+  .domain( [0, d3.max(dataset)] )     // rect heights set to min/max values for chart
+  .range( [0, h] );                   // range of the heights falls in height of the chart
+
 
 var svg = d3.select('body')
   .append('svg')
@@ -27,19 +39,19 @@ svg.selectAll('rect').data(dataset)
   .enter()
   .append('rect')
   .attr('x', function (d, i) {
-    return i * (w / dataset.length);
+    return xScale(i);
   })
   .attr('y', function (d) {
-    return h - (d*scaleHeight);
+    return h - yScale(d);
   })
   .attr('width', function (d, i) {
-    return (w / dataset.length) - barPadding;
+    return xScale.rangeBand();
   })
   .attr('height', function (d) {
-    return d * scaleHeight;
+    return yScale(d);
   })
   .attr('fill', function (d) {
-    console.log(arguments);
+    //console.log(arguments);
     return 'rgb(0, 0, '+ (d * 10) +')'; 
   });
 
@@ -61,5 +73,51 @@ svg.selectAll('text').data(dataset)
   .attr('fill', 'white')
   .attr('text-anchor', 'middle')
 
+// When updating data from server (paging, etc.)
+d3.select('.reload').on('click', function () {
+  dataset = generateData();
+  console.log(dataset);
+
+  // update the y-scale domain (don't need to recalibrate function)
+  yScale.domain([0, d3.max(dataset)]);
+
+  // bind visuals to new data
+  svg.selectAll('rect')
+    .data(dataset)
+    .transition()
+    .delay(function (d, i) {
+      return i * 20;
+    })
+    .duration(500)
+    .ease('elastic')
+    .attr('y', function (d) {
+      return h - yScale(d);
+    })
+    .attr('height', function (d) {
+      return yScale(d);
+    })
+    .attr('fill', function (d) {
+      return 'rgb(0, 0, '+ d*10 +')';
+    })
+
+  svg.selectAll('text')
+    .data(dataset)
+    .transition()
+    .duration(500)
+    .delay(function (d, i) {
+      return i * 20;
+    })
+    .ease('elastic')
+    .text(function (d) {
+      return d;
+    })
+    .attr('x', function (d, i) {
+      return xScale(i) + xScale.rangeBand() / 2;
+    })
+    .attr('y', function (d) {
+      return h - yScale(d) + 14;
+    })
+
+});
 
 
