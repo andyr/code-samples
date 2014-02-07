@@ -1,0 +1,214 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.hide {
+  display: none;
+}
+div.clock {
+  position: relative;
+  border: 5px solid #333;
+  width: 325px;
+  height: 325px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+div.clock span {
+  position: absolute;
+}
+/* Draw clock ticks */
+.x-12 {
+  position: absolute;
+  top: 86.99999999999993px;
+  left: 279.90381056766574px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(330deg);
+  -ms-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg);
+}
+.x-11 {
+  position: absolute;
+  top: 32.0961894323342px;
+  left: 225px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(300deg);
+  -ms-transform: rotate(300deg);
+  -webkit-transform: rotate(300deg);
+}
+.x-10 {
+  position: absolute;
+  top: 12px;
+  left: 149.99999999999997px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+}
+.x-9 {
+  position: absolute;
+  top: 32.096189432334256px;
+  left: 74.99999999999993px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(240deg);
+  -ms-transform: rotate(240deg);
+  -webkit-transform: rotate(240deg);
+}
+.x-8 {
+  position: absolute;
+  top: 86.99999999999999px;
+  left: 20.0961894323342px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(210deg);
+  -ms-transform: rotate(210deg);
+  -webkit-transform: rotate(210deg);
+}
+.x-7 {
+  position: absolute;
+  top: 162.00000000000003px;
+  left: 0px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+.x-6 {
+  position: absolute;
+  top: 237px;
+  left: 20.0961894323342px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(150deg);
+  -ms-transform: rotate(150deg);
+  -webkit-transform: rotate(150deg);
+}
+.x-5 {
+  position: absolute;
+  top: 291.9038105676658px;
+  left: 75.00000000000003px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  -webkit-transform: rotate(120deg);
+}
+.x-4 {
+  position: absolute;
+  top: 312px;
+  left: 150px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+.x-3 {
+  position: absolute;
+  top: 291.9038105676658px;
+  left: 225px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
+}
+.x-2 {
+  position: absolute;
+  top: 237px;
+  left: 279.9038105676658px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+}
+.x-1 {
+  position: absolute;
+  top: 162px;
+  left: 300px;
+  width: 25px;
+  height: 0;
+  border: 1px solid #333;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+}
+/* Just eyeball the vertical offset of the origin of the hands for now */
+.second-hand {
+  position: absolute;
+  top: 0px;
+  left: 162px;
+  width: 0;
+  border: 1px solid #000;
+  height: 250px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  top: -88px;
+  border: 1px solid #333;
+}
+.minute-hand {
+  position: absolute;
+  top: 0px;
+  left: 162px;
+  width: 0;
+  height: 250px;
+  border: 1px solid #000;
+  height: 200px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  border: 2px solid #333;
+  top: -38px;
+}
+.hour-hand {
+  position: absolute;
+  top: 0px;
+  left: 162px;
+  width: 0;
+  height: 250px;
+  border: 1px solid #000;
+  height: 100px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  border: 3px solid #333;
+  top: 62px;
+}
