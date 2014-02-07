@@ -135,20 +135,6 @@ d3.select('.reload').on('click', function () {
     .duration(500)
     .attr('x', function (d, i) { return xScale(i) + xScale.rangeBand()/2; })
 
-/*
-  svg.selectAll('text')
-    .data(dataset)
-    .transition()
-    .duration(500)
-    .text(function (d) { return d; })
-    .attr('x', function (d, i) {
-      //console.log(i, xScale(i), xScale.rangeBand());
-      return xScale(i) + xScale.rangeBand() / 2;
-    })
-    .attr('y', function (d) {
-      return h - yScale(d) + 14;
-    })
-*/
 });
 
 
